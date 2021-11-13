@@ -49,6 +49,12 @@ ChatBot::~ChatBot()
     // copy constructor
     ChatBot::ChatBot(const ChatBot &source)
     {
+        
+        this->_image = source._image;
+        this->_currentNode= source._currentNode;
+        this->_rootNode= source._rootNode;
+        this->_chatLogic=source._chatLogic;
+
         std::cout << "ChatBot Copy Constructor" << std::endl;
     }
 
@@ -56,20 +62,63 @@ ChatBot::~ChatBot()
     // copy assignment operator
     ChatBot& ChatBot::operator=(const ChatBot &source)
     {
+        if (this != &source)
+        {
+            if (_image) delete _image;
+            if (_currentNode) delete _currentNode;
+            if (_rootNode) delete _rootNode;
+            if (_chatLogic) delete _chatLogic;
+
+            this->_image = source._image;
+            this->_currentNode= source._currentNode;
+            this->_rootNode= source._rootNode;
+            this->_chatLogic=source._chatLogic;
+        }
+
         std::cout << "ChatBot Copy Assignment Operator" << std::endl;
         return *this;
     }
 
     // move operator
-    ChatBot& ChatBot::operator=(const ChatBot &&source)
+    ChatBot& ChatBot::operator=(ChatBot &&source)
     {
+
+            if (this != &source)
+        {
+            if (_image) delete _image;
+            if (_currentNode) delete _currentNode;
+            if (_rootNode) delete _rootNode;
+            if (_chatLogic) delete _chatLogic;
+
+            this->_image = source._image;
+            this->_currentNode= source._currentNode;
+            this->_rootNode= source._rootNode;
+            this->_chatLogic=source._chatLogic;
+
+            source._image=nullptr;
+            source._currentNode= nullptr;
+            source._rootNode= nullptr;
+            source._chatLogic= nullptr;
+
+        }
+
         std::cout << "ChatBot Move Assignment Operator" << std::endl;
         return *this;
     }
 
     // move constructor
-    ChatBot::ChatBot(const ChatBot &&source)
+    ChatBot::ChatBot(ChatBot &&source)
     {
+        this->_image = source._image;
+        this->_currentNode= source._currentNode;
+        this->_rootNode= source._rootNode;
+        this->_chatLogic=source._chatLogic;
+
+        source._image=nullptr;
+        source._currentNode= nullptr;
+        source._rootNode= nullptr;
+        source._chatLogic= nullptr;
+
         std::cout << "ChatBot Move Constructor" << std::endl;
     }
 

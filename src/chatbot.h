@@ -40,11 +40,11 @@ public:
 
 
     // move operator
-    ChatBot& operator=(const ChatBot &&source);
+    ChatBot& operator=(ChatBot &&source);
 
 
     // move constructor
-    ChatBot(const ChatBot &&source);
+    ChatBot(ChatBot &&source);
 
 
     ////

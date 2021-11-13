@@ -218,7 +218,11 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+
     // add chatbot to graph root node
+
+    ChatBot chatty("../images/chatbot.png");
+
     _chatBot->SetRootNode(rootNode);
     rootNode->MoveChatbotHere(_chatBot);
     
