@@ -207,12 +207,14 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     ChatBot chatty("../images/chatbot.png");
     _chatBot = &chatty; // _chatBot handle takes the reference of chatty
 
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    _chatBot->SetChatLogicHandle(this);
+
     // add chatbot to graph root node
     chatty.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(chatty));  //move chatty, so no copy made.
     
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+
 
 
     ////
