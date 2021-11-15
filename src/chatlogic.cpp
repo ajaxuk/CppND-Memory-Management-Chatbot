@@ -118,7 +118,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
-                            _nodes.emplace_back(new GraphNode(id));
+                            _nodes.emplace_back(std::make_unique<GraphNode>(id));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
                             // add all answers to current node
@@ -148,7 +148,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             // create new edge pointer
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
 
-                            //GraphEdge *edge = new GraphEdge(id);
                             edge->SetChildNode((*childNode).get());    // dereference the iterator and get the pointer
                             edge->SetParentNode((*parentNode).get()); // dereference the iterator and get the pointer
 
@@ -203,7 +202,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
 
-    // create instance of ChatBot on the stack
+    // create instance of ChatBot on the stackcle
     ChatBot chatty("../images/chatbot.png");
     _chatBot = &chatty; // _chatBot handle takes the reference of chatty
 
